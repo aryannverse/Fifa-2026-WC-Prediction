@@ -1,4 +1,4 @@
-<img width="2471" height="720" alt="Frame 2" src="https://github.com/user-attachments/assets/16116843-eb1d-45d3-9108-bb5781a4417c" />
+<img width="2471" height="720" alt="Frame 2" src="https://github.com/user-attachments/assets/ffa0db64-3ee7-491e-85bd-e917b9c87252" />
 
 
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
@@ -26,7 +26,8 @@ An end-to-end machine learning analytical dashboard and simulation engine design
 *   **Poisson Scoreline Generator**: Generates realistic scorelines using random Poisson draws modeled from teams' offensive/defensive form and Elo ratings.
 
 
-<img width="3336" height="1242" alt="Preview" src="https://github.com/user-attachments/assets/28d8703e-20ff-464e-91f6-4ee47bea7c08" />
+<img width="3336" height="1242" alt="Preview" src="https://github.com/user-attachments/assets/3ca58ef6-c9fe-4b2c-aed5-ac9e098bb730" />
+
 
 ---
 
