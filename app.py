@@ -130,17 +130,22 @@ FLAG_MAP = {
 @st.cache_resource
 def load_data():
     try:
+        import sklearn
         with open("models/dashboard_data.pkl", "rb") as f:
             data = pickle.load(f)
+        if data.get('sklearn_version') != sklearn.__version__:
+            raise ValueError(f"scikit-learn version mismatch: data={data.get('sklearn_version')}, env={sklearn.__version__}")
         return data
     except Exception as e:
         import subprocess
         import os
-        st.info("Pickle mismatch or model missing. Running data pipeline to regenerate model files...")
+        import sys
+        st.info(f"Pickle mismatch or model missing ({e}). Running data pipeline to regenerate model files...")
         os.makedirs("models", exist_ok=True)
-        result = subprocess.run(["python", "prepare_data.py"], capture_output=True, text=True)
+        result = subprocess.run([sys.executable, "prepare_data.py"], capture_output=True, text=True)
         if result.returncode != 0:
-            result = subprocess.run(["python3", "prepare_data.py"], capture_output=True, text=True)
+            st.error(f"Data pipeline failed with exit code {result.returncode}.\n\nStderr:\n{result.stderr}\n\nStdout:\n{result.stdout}")
+            st.stop()
         with open("models/dashboard_data.pkl", "rb") as f:
             data = pickle.load(f)
         return data

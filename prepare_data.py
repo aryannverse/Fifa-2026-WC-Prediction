@@ -5,6 +5,7 @@ import os
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import PoissonRegressor
 from sklearn.model_selection import GridSearchCV
+import sklearn
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -482,6 +483,7 @@ venue_stats = features_df.groupby('neutral').agg(
 
 output_path = "models/dashboard_data.pkl"
 dashboard_data = {
+    'sklearn_version': sklearn.__version__,
     'models': {
         'match_classifier': clf,
         'poisson_regressor': poi
