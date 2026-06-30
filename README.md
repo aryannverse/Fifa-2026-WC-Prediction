@@ -1,4 +1,5 @@
-# ⚽ FIFA World Cup 2026 Analysis & Monte Carlo Simulator
+<img width="2471" height="720" alt="Frame 2" src="https://github.com/user-attachments/assets/16116843-eb1d-45d3-9108-bb5781a4417c" />
+
 
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://streamlit.io/)
@@ -25,6 +26,7 @@ An end-to-end machine learning analytical dashboard and simulation engine design
 *   **Poisson Scoreline Generator**: Generates realistic scorelines using random Poisson draws modeled from teams' offensive/defensive form and Elo ratings.
 
 
+<img width="3336" height="1242" alt="Preview" src="https://github.com/user-attachments/assets/28d8703e-20ff-464e-91f6-4ee47bea7c08" />
 
 ---
 
