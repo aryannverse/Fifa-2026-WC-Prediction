@@ -129,14 +129,26 @@ FLAG_MAP = {
 
 @st.cache_resource
 def load_data():
-    with open("models/dashboard_data.pkl", "rb") as f:
-        data = pickle.load(f)
-    return data
+    try:
+        with open("models/dashboard_data.pkl", "rb") as f:
+            data = pickle.load(f)
+        return data
+    except Exception as e:
+        import subprocess
+        import os
+        st.info("Pickle mismatch or model missing. Running data pipeline to regenerate model files...")
+        os.makedirs("models", exist_ok=True)
+        result = subprocess.run(["python", "prepare_data.py"], capture_output=True, text=True)
+        if result.returncode != 0:
+            result = subprocess.run(["python3", "prepare_data.py"], capture_output=True, text=True)
+        with open("models/dashboard_data.pkl", "rb") as f:
+            data = pickle.load(f)
+        return data
 
 try:
     data = load_data()
 except Exception as e:
-    st.error(f"Failed to load pickled model data: {e}. Please run `prepare_data.py` first.")
+    st.error(f"Failed to load pickled model data: {e}. Please check project files.")
     st.stop()
 
 

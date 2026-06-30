@@ -241,36 +241,23 @@ sym_df = pd.concat([pd.DataFrame(rows_orig), pd.DataFrame(rows_swap)], ignore_in
 
 
 
-print("Tuning RandomForestClassifier...")
+print("Training RandomForestClassifier...")
 X_clf = sym_df[['elo_team', 'elo_opp', 'elo_diff', 'form_team', 'form_opp', 'h2h_win_team', 'h2h_win_opp', 'tourney_code', 'is_home']]
 y_clf = sym_df['outcome']
+clf = RandomForestClassifier(random_state=42, n_jobs=-1, max_depth=8, min_samples_split=2, n_estimators=100)
+clf.fit(X_clf, y_clf)
+print("Random Forest trained.")
 
-param_grid_clf = {
-    'n_estimators': [100, 150],
-    'max_depth': [8, 12],
-    'min_samples_split': [2, 5]
-}
-grid_clf = GridSearchCV(RandomForestClassifier(random_state=42, n_jobs=-1), param_grid_clf, cv=3, scoring='accuracy')
-grid_clf.fit(X_clf, y_clf)
-clf = grid_clf.best_estimator_
-print("Random Forest optimized. Best parameters:", grid_clf.best_params_)
-
-
-print("Tuning Poisson Regressor...")
+print("Training Poisson Regressor...")
 sym_df['elo_team_scaled'] = sym_df['elo_team'] / 400.0
 sym_df['elo_opp_scaled'] = sym_df['elo_opp'] / 400.0
 sym_df['elo_diff_scaled'] = sym_df['elo_diff'] / 400.0
 
 X_poi = sym_df[['elo_team_scaled', 'elo_opp_scaled', 'elo_diff_scaled', 'form_team_scored', 'form_opp_conceded', 'is_home']]
 y_poi = sym_df['goals_team']
-
-param_grid_poi = {
-    'alpha': [1e-6, 1e-4, 1e-2]
-}
-grid_poi = GridSearchCV(PoissonRegressor(max_iter=300), param_grid_poi, cv=3)
-grid_poi.fit(X_poi, y_poi)
-poi = grid_poi.best_estimator_
-print("Poisson Regressor optimized. Best alpha:", grid_poi.best_params_)
+poi = PoissonRegressor(max_iter=300, alpha=1e-06)
+poi.fit(X_poi, y_poi)
+print("Poisson Regressor trained.")
 
 
 poi_coef = poi.coef_
