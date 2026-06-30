@@ -72,7 +72,7 @@ $$\text{Form} = \frac{\sum_{i=1}^{n} (n - i + 1) \times \text{Metric}_i}{\sum_{i
 
 ### ⚽ 3. Goal Modeling (Poisson Regression)
 Expected goals (xG) are modeled using a Poisson generalized linear model (GLM) with a log-link function:
-$$\log(\lambda_1) = \beta_0 + \beta_1 \frac{\text{Elo}_1}{400} + \beta_2 \frac{\text{Elo}_2}{400} + \beta_3 \frac{\text{Elo}_1 - \text{Elo}_2}{400} + \beta_4 \text{GF\_Form}_1 + \beta_5 \text{GA\_Form}_2$$
+$$\log(\lambda_1) = \beta_0 + \beta_1 \frac{\text{Elo}_1}{400} + \beta_2 \frac{\text{Elo}_2}{400} + \beta_3 \frac{\text{Elo}_1 - \text{Elo}_2}{400} + \beta_4 \text{GF-Form}_1 + \beta_5 \text{GA-Form}_2$$
 Goals scored are then sampled from:
 $$\text{Goals}_1 \sim \text{Poisson}(\lambda_1)$$
 

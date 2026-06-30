@@ -22,3 +22,9 @@ env/
 
 # Temporary scratch folder
 scratch/
+
+# Ignore Sample folder containing reference files
+Sample/
+
+# Ignore automated notebook compiler
+create_notebook.py
